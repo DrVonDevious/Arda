@@ -1,9 +1,14 @@
 package dev.devious.test;
 
-import org.lwjgl.Version;
+import dev.devious.engine.WindowManager;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(Version.getVersion());
+        WindowManager window = new WindowManager("Arda", 1600, 900, false);
+        window.init();
+
+        while (!window.shouldWindowClose()) window.update();
+
+        window.cleanup();
     }
 }

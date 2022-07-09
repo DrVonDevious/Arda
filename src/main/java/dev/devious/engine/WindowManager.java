@@ -113,7 +113,7 @@ public class WindowManager {
         return GLFW.glfwGetKey(window, keycode) == GLFW.GLFW_PRESS;
     }
 
-    public boolean shouldWindowClose() {
+    public boolean windowShouldClose() {
         return GLFW.glfwWindowShouldClose(window);
     }
 
@@ -133,7 +133,7 @@ public class WindowManager {
     public boolean isResize() {
         return resize;
     }
-    private void setResize(boolean resize) {
+    public void setResize(boolean resize) {
     }
 
     public int getWidth() {

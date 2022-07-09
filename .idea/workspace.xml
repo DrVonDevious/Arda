@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8b66b27-94cd-41d9-9f39-ac23b4ad3b35" name="Changes" comment="add class for creating and managing the game window">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/WindowManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/EngineManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ILogic.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ObjectLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/RenderManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ShaderManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/Model.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Constants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/test/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/shaders/shader.frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/shaders/shader.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/WindowManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/test/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657312084502</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add class for creating and managing the game window">
+      <created>1657316980507</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657316980507</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -1,13 +1,15 @@
 package dev.devious.engine;
 
+import dev.devious.engine.input.Mouse;
+
 public interface ILogic {
-    void init() throws Exception;
+	void init() throws Exception;
 
-    void input();
+	void input();
 
-    void update();
+	void update(Mouse mouse);
 
-    void render();
+	void render();
 
-    void cleanup();
+	void cleanup();
 }

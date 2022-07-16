@@ -1,113 +1,118 @@
 package dev.devious.engine;
 
-import dev.devious.engine.utils.Constants;
-import dev.devious.test.Main;
+import dev.devious.engine.graphics.WindowManager;
+import dev.devious.engine.input.Mouse;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;
 
 public class EngineManager {
-    public static final long NANOSECOND = 1000000000L;
-    public static final float FRAMERATE = 1000;
+	public static final long NANOSECOND = 1000000000L;
+	public static final float FRAMERATE = 1000;
 
-    private static int fps;
-    private static float frametime = 1.0f / FRAMERATE;
+	private static int fps;
+	private static float frametime = 1.0f / FRAMERATE;
 
-    private boolean isRunning;
+	private boolean isRunning;
 
-    private WindowManager window;
-    private GLFWErrorCallback errorCallback;
-    private ILogic gameLogic;
+	private WindowManager window;
+	private Mouse mouse;
+	private GLFWErrorCallback errorCallback;
+	private ILogic gameLogic;
 
-    private void init() throws Exception {
-        GLFW.glfwSetErrorCallback(errorCallback = GLFWErrorCallback.createPrint(System.err));
-        window = Main.getWindow();
-        gameLogic = Main.getGame();
-        window.init();
-        gameLogic.init();
-    }
+	public EngineManager(WindowManager window, ILogic gameLogic) {
+		this.window = window;
+		this.gameLogic = gameLogic;
+	}
 
-    public void start() throws Exception {
-        init();
-        if (isRunning) return;
-        run();
-    }
+	private void init() throws Exception {
+		GLFW.glfwSetErrorCallback(errorCallback = GLFWErrorCallback.createPrint(System.err));
 
-    public void run() {
-        this.isRunning = true;
+		window.init();
+		gameLogic.init();
+		mouse = new Mouse(window);
+		mouse.init();
+	}
 
-        int frames = 0;
-        long frameCounter = 0;
-        long lastTime = System.nanoTime();
-        double unprocessedTime = 0;
+	public void start() throws Exception {
+		init();
+		if (isRunning) return;
+		run();
+	}
 
-        while (isRunning) {
-            // Tick
-            boolean render = false;
-            long startTime = System.nanoTime();
-            long passedTime = startTime - lastTime;
-            lastTime = startTime;
+	public void run() {
+		this.isRunning = true;
+		int frames = 0;
+		long frameCounter = 0;
+		long lastTime = System.nanoTime();
+		double unprocessedTime = 0;
 
-            unprocessedTime += passedTime / (double) NANOSECOND;
-            frameCounter += passedTime;
+		while (isRunning) {
+			boolean render = false;
+			long startTime = System.nanoTime();
+			long passedTime = startTime - lastTime;
+			lastTime = startTime;
 
-            input();
+			unprocessedTime += passedTime / (double) NANOSECOND;
+			frameCounter += passedTime;
 
-            while (unprocessedTime > frametime) {
-                render = true;
-                unprocessedTime -= frametime;
+			input();
 
-                if (window.windowShouldClose()) stop();
+			while (unprocessedTime > frametime) {
+				render = true;
+				unprocessedTime -= frametime;
 
-                if (frameCounter >= NANOSECOND) {
-                    setFps(frames);
-                    window.setTitle(Constants.TITLE + " FPS: " + getFps());
-                    frames = 0;
-                    frameCounter = 0;
-                }
-            }
+				if (window.windowShouldClose()) {
+					stop();
+				}
 
-            if (render) {
-                update();
-                render();
-                frames++;
-            }
-        }
+				if (frameCounter >= NANOSECOND) {
+					setFps(frames);
+					frames = 0;
+					frameCounter = 0;
+				}
+			}
 
-        cleanup();
-    }
+			if (render) {
+				update();
+				render();
+				frames++;
+			}
+		}
 
-    public void stop() {
-        if (!isRunning) {
-            return;
-        }
-        isRunning = false;
-    }
+		cleanup();
+	}
 
-    public void input() {
-        gameLogic.input();
-    }
+	private void stop() {
+		if (!isRunning) return;
+		isRunning = false;
+	}
 
-    public void render() {
-        gameLogic.render();
-        window.update();
-    }
+	private void input() {
+		mouse.input();
+		gameLogic.input();
+	}
 
-    public void update() {
-        gameLogic.update();
-    }
+	private void render() {
+		gameLogic.render();
+		window.update();
+	}
 
-    public void cleanup() {
-        window.cleanup();
-        gameLogic.cleanup();
-        errorCallback.free();
-        GLFW.glfwTerminate();
-    }
+	private void update() {
+		gameLogic.update(mouse);
+	}
 
-    public static int getFps() {
-        return fps;
-    }
+	private void cleanup() {
+		window.cleanup();
+		gameLogic.cleanup();
+		errorCallback.free();
+		GLFW.glfwTerminate();
+	}
 
-    public static void setFps(int fps) {
-        EngineManager.fps = fps;
-    }
+	public static int getFps() {
+		return fps;
+	}
+
+	public static void setFps(int fps) {
+		EngineManager.fps = fps;
+	}
 }

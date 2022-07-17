@@ -3,7 +3,6 @@ package dev.devious.engine.rendering;
 import dev.devious.engine.ecs.Entity;
 import dev.devious.engine.ecs.components.Renderable;
 import dev.devious.engine.ecs.components.Rotation;
-import dev.devious.engine.entity.Model;
 import dev.devious.engine.rendering.camera.Camera;
 import dev.devious.engine.rendering.shader.UniformManager;
 import dev.devious.engine.utils.Transformation;
@@ -60,7 +59,7 @@ public class EntityRenderer {
 
 	private void prepareInstance(Entity entity) {
 		Renderable renderable = (Renderable) entity.getComponent(Renderable.class);
-		uniformManager.setUniform("transformationMatrix", Transformation.createTransformationMatrixECS(entity));
+		uniformManager.setUniform("transformationMatrix", Transformation.createTransformationMatrix(entity));
 		uniformManager.setUniform("shineDamper", renderable.getModel().getTexture().getShineDamper());
 		uniformManager.setUniform("specularity", renderable.getModel().getTexture().getSpecularity());
 		uniformManager.setUniform("useFakeLighting", renderable.getModel().getTexture().isHasFakeLighting());

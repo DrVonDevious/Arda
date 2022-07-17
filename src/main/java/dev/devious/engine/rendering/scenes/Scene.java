@@ -2,7 +2,7 @@ package dev.devious.engine.rendering.scenes;
 
 import dev.devious.engine.ecs.Entity;
 import dev.devious.engine.ecs.World;
-import dev.devious.engine.entity.terrain.Terrain;
+import dev.devious.engine.rendering.Terrain;
 import dev.devious.engine.lighting.Light;
 import dev.devious.engine.rendering.RenderManager;
 import dev.devious.engine.rendering.WindowManager;

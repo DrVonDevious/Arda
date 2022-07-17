@@ -1,8 +1,5 @@
 package dev.devious.engine.rendering;
 
-import dev.devious.engine.entity.Entity;
-import dev.devious.engine.entity.Model;
-import dev.devious.engine.entity.terrain.Terrain;
 import dev.devious.engine.rendering.camera.Camera;
 import dev.devious.engine.rendering.shader.ShaderManager;
 import dev.devious.engine.rendering.shader.UniformManager;
@@ -11,7 +8,6 @@ import dev.devious.engine.utils.Utils;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
-import java.util.Map;
 
 public class RenderManager {
 	private final WindowManager window;

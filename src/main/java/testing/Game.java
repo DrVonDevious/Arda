@@ -2,14 +2,17 @@ package testing;
 
 import dev.devious.engine.ILogic;
 import dev.devious.engine.ObjectLoader;
+import dev.devious.engine.ecs.Entity;
 import dev.devious.engine.ecs.World;
+import dev.devious.engine.ecs.components.PlayerController;
 import dev.devious.engine.ecs.components.Position;
 import dev.devious.engine.ecs.components.Renderable;
 import dev.devious.engine.ecs.components.Rotation;
 import dev.devious.engine.ecs.systems.Physics;
-import dev.devious.engine.entity.Entity;
-import dev.devious.engine.entity.Model;
-import dev.devious.engine.entity.terrain.Terrain;
+import dev.devious.engine.ecs.systems.PlayerInput;
+import dev.devious.engine.input.Keyboard;
+import dev.devious.engine.rendering.Model;
+import dev.devious.engine.rendering.Terrain;
 import dev.devious.engine.rendering.RenderManager;
 import dev.devious.engine.rendering.Texture;
 import dev.devious.engine.rendering.WindowManager;
@@ -20,7 +23,6 @@ import dev.devious.engine.rendering.scenes.Scene;
 import dev.devious.engine.rendering.scenes.SceneManager;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import java.util.*;
@@ -32,18 +34,14 @@ public class Game implements ILogic {
 	private final ObjectLoader objectLoader;
 	private final World world;
 
-	private Map<Model, List<Entity>> entities = new HashMap<>();
-	private Map<Model, List<Terrain>> allTerrains = new HashMap<>();
-	private List<Entity> allCubes = new ArrayList<>();
-	private List<Terrain> terrains = new ArrayList<>();
 	private Camera camera;
+	private Keyboard keyboard;
 	private Light light;
 
-	private Vector3f cameraMovement;
-
-	public Game(WindowManager window, Camera camera) {
+	public Game(WindowManager window, Camera camera, Keyboard keyboard) {
 		objectLoader = new ObjectLoader();
 		this.camera = camera;
+		this.keyboard = keyboard;
 		this.window = window;
 		renderer = new RenderManager(window, camera);
 		sceneManager = new SceneManager();
@@ -56,9 +54,13 @@ public class Game implements ILogic {
 		renderer.init();
 
 		world.addSystem(new Physics(world));
+		world.addSystem(new PlayerInput(world));
 
 		Scene gameScene = new Scene(window, camera);
 		sceneManager.setActiveScene(gameScene);
+
+		Entity player = world.createEntity();
+		player.addComponent(new PlayerController(keyboard, camera));
 
 		Model model = objectLoader.loadOBJModel("/models/billboard.obj");
 		model.setTexture(new Texture(objectLoader.loadTexture("src/main/resources/textures/pine_tree.png")));
@@ -86,35 +88,6 @@ public class Game implements ILogic {
 			objectLoader,
 			new Texture(objectLoader.loadTexture("src/main/resources/textures/grass.png"))
 		));
-
-		cameraMovement = new Vector3f(0, 0, 0);
-	}
-
-	@Override
-	public void input() {
-		if (window.isKeyPressed(GLFW.GLFW_KEY_W)) {
-			cameraMovement.z = -1;
-		}
-
-		if (window.isKeyPressed(GLFW.GLFW_KEY_S)) {
-			cameraMovement.z = 1;
-		}
-
-		if (window.isKeyPressed(GLFW.GLFW_KEY_A)) {
-			cameraMovement.x = -1;
-		}
-
-		if (window.isKeyPressed(GLFW.GLFW_KEY_D)) {
-			cameraMovement.x = 1;
-		}
-
-		if (window.isKeyPressed(GLFW.GLFW_KEY_Q)) {
-			cameraMovement.y = -1;
-		}
-
-		if (window.isKeyPressed(GLFW.GLFW_KEY_E)) {
-			cameraMovement.y = 1;
-		}
 	}
 
 	@Override
@@ -123,22 +96,10 @@ public class Game implements ILogic {
 
 		float mouseSensitivity = 0.2f;
 
-		camera.move(cameraMovement.x, cameraMovement.y, cameraMovement.z);
-
 		if (mouse.isRightButtonPressed()) {
 			Vector2f rotationVector = mouse.getDisplayVector();
 			camera.rotate(new Vector3f(rotationVector.x * mouseSensitivity, rotationVector.y * mouseSensitivity, 0));
 		}
-
-		for (Entity entity : allCubes) {
-			Entity.processEntity(entities, entity);
-		}
-
-		for (Terrain terrain : terrains) {
-			Terrain.processTerrain(allTerrains, terrain);
-		}
-
-		cameraMovement = new Vector3f(0, 0, 0);
 	}
 
 	@Override

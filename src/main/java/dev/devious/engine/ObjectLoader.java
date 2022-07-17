@@ -1,6 +1,6 @@
 package dev.devious.engine;
 
-import dev.devious.engine.entity.Model;
+import dev.devious.engine.rendering.Model;
 import dev.devious.engine.utils.Utils;
 import org.joml.Vector2f;
 import org.joml.Vector3f;

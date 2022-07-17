@@ -1,7 +1,7 @@
 package dev.devious.engine.ecs.components;
 
 import dev.devious.engine.ecs.Component;
-import dev.devious.engine.entity.Model;
+import dev.devious.engine.rendering.Model;
 
 public class Renderable extends Component {
 	private Model model;

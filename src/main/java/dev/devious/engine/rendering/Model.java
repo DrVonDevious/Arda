@@ -1,6 +1,4 @@
-package dev.devious.engine.entity;
-
-import dev.devious.engine.rendering.Texture;
+package dev.devious.engine.rendering;
 
 public class Model {
 	private int id;

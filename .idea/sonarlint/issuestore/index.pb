@@ -34,12 +34,8 @@ a
 1src/main/java/dev/devious/engine/utils/Color.java,c\0\c078c6f767372f16ef027396d8921124c0e2129f
 e
 5src/main/java/dev/devious/engine/utils/Constants.java,6\b\6bb798b1da4c9028658f7aea26135961b060957f
-\
-,src/main/java/dev/devious/engine/ILogic.java,4\1\41d1e667be325d52f9838abf17378912c7fa4deb
 d
 4src/main/java/dev/devious/engine/lighting/Light.java,2\4\246a8e41e893fbd1c1501717e8d85fd2b2f4a014
-b
-2src/main/java/dev/devious/engine/ObjectLoader.java,b\6\b66da08ab384e2b89ab32c1885396afe2a325069
 s
 Csrc/main/java/dev/devious/engine/graphics/shader/ShaderManager.java,e\9\e9729c06a08bd1625e4d87536914f910e24e9fc2
 f

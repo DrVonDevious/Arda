@@ -89,7 +89,6 @@ public class EngineManager {
 
 	private void input() {
 		mouse.input();
-		gameLogic.input();
 	}
 
 	private void render() {

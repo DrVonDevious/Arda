@@ -1,7 +1,5 @@
 package dev.devious.engine.rendering;
 
-import dev.devious.engine.entity.Model;
-import dev.devious.engine.entity.terrain.Terrain;
 import dev.devious.engine.rendering.shader.UniformManager;
 import dev.devious.engine.utils.Transformation;
 import org.joml.Vector3f;

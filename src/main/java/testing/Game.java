@@ -2,15 +2,22 @@ package testing;
 
 import dev.devious.engine.ILogic;
 import dev.devious.engine.ObjectLoader;
+import dev.devious.engine.ecs.World;
+import dev.devious.engine.ecs.components.Position;
+import dev.devious.engine.ecs.components.Renderable;
+import dev.devious.engine.ecs.components.Rotation;
+import dev.devious.engine.ecs.systems.Physics;
 import dev.devious.engine.entity.Entity;
 import dev.devious.engine.entity.Model;
 import dev.devious.engine.entity.terrain.Terrain;
-import dev.devious.engine.graphics.RenderManager;
-import dev.devious.engine.graphics.Texture;
-import dev.devious.engine.graphics.WindowManager;
-import dev.devious.engine.graphics.camera.Camera;
+import dev.devious.engine.rendering.RenderManager;
+import dev.devious.engine.rendering.Texture;
+import dev.devious.engine.rendering.WindowManager;
+import dev.devious.engine.rendering.camera.Camera;
 import dev.devious.engine.input.Mouse;
 import dev.devious.engine.lighting.Light;
+import dev.devious.engine.rendering.scenes.Scene;
+import dev.devious.engine.rendering.scenes.SceneManager;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -20,8 +27,10 @@ import java.util.*;
 
 public class Game implements ILogic {
 	private final RenderManager renderer;
+	private final SceneManager sceneManager;
 	private final WindowManager window;
 	private final ObjectLoader objectLoader;
+	private final World world;
 
 	private Map<Model, List<Entity>> entities = new HashMap<>();
 	private Map<Model, List<Terrain>> allTerrains = new HashMap<>();
@@ -37,13 +46,19 @@ public class Game implements ILogic {
 		this.camera = camera;
 		this.window = window;
 		renderer = new RenderManager(window, camera);
+		sceneManager = new SceneManager();
+		light = new Light(new Vector3f(0, 20, -10), new Vector3f(1f, 1f, 1f));
+		world = new World(renderer, camera, light);
 	}
 
 	@Override
 	public void init() throws Exception {
 		renderer.init();
 
-		cameraMovement = new Vector3f(0, 0, 0);
+		world.addSystem(new Physics(world));
+
+		Scene gameScene = new Scene(window, camera);
+		sceneManager.setActiveScene(gameScene);
 
 		Model model = objectLoader.loadOBJModel("/models/billboard.obj");
 		model.setTexture(new Texture(objectLoader.loadTexture("src/main/resources/textures/pine_tree.png")));
@@ -53,20 +68,26 @@ public class Game implements ILogic {
 		model.getTexture().setSpecularity(0);
 
 		Random rand = new Random();
-		for (int i = 0; i < 800; i++) {
+		for (int i = 0; i < 6000; i++) {
 			int randX = rand.nextInt(800) - 400;
 			int randZ = rand.nextInt(800) - 400;
-			allCubes.add(new Entity(model, new Vector3f(randX, 10, randZ), new Vector3f(90, 0, 140), 10));
+			int randScale = rand.nextInt(2) + 10;
+			dev.devious.engine.ecs.Entity entity = world.createEntity();
+			entity.addComponent(new Position(randX, 10, randZ));
+			entity.addComponent(new Rotation(90, 0, 140));
+			entity.addComponent(new Renderable(model, randScale));
+			gameScene.addEntity(entity);
 		}
 
-		terrains.add(new Terrain(
+		gameScene.addLight(light);
+		gameScene.addTerrain(new Terrain(
 			-400,
 			-400,
 			objectLoader,
 			new Texture(objectLoader.loadTexture("src/main/resources/textures/grass.png"))
 		));
 
-		light = new Light(new Vector3f(0, 20, -10), new Vector3f(1f, 1f, 1f));
+		cameraMovement = new Vector3f(0, 0, 0);
 	}
 
 	@Override
@@ -98,6 +119,8 @@ public class Game implements ILogic {
 
 	@Override
 	public void update(Mouse mouse) {
+		world.process();
+
 		float mouseSensitivity = 0.2f;
 
 		camera.move(cameraMovement.x, cameraMovement.y, cameraMovement.z);
@@ -125,7 +148,7 @@ public class Game implements ILogic {
 			window.setIsResized(true);
 		}
 
-		renderer.render(entities, allTerrains, camera, light);
+		sceneManager.getActiveScene().render(renderer);
 	}
 
 	@Override

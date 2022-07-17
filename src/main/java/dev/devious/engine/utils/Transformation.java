@@ -1,8 +1,11 @@
 package dev.devious.engine.utils;
 
+import dev.devious.engine.ecs.components.Position;
+import dev.devious.engine.ecs.components.Renderable;
+import dev.devious.engine.ecs.components.Rotation;
 import dev.devious.engine.entity.Entity;
 import dev.devious.engine.entity.terrain.Terrain;
-import dev.devious.engine.graphics.camera.Camera;
+import dev.devious.engine.rendering.camera.Camera;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -15,6 +18,20 @@ public class Transformation {
 		matrix.rotateY((float) Math.toRadians(entity.getRotation().y));
 		matrix.rotateZ((float) Math.toRadians(entity.getRotation().z));
 		matrix.scale(entity.getScale());
+		return matrix;
+	}
+
+	public static Matrix4f createTransformationMatrixECS(dev.devious.engine.ecs.Entity entity) {
+		Position position = (Position) entity.getComponent(Position.class);
+		Rotation rotation = (Rotation) entity.getComponent(Rotation.class);
+		Renderable renderable = (Renderable) entity.getComponent(Renderable.class);
+		Matrix4f matrix = new Matrix4f();
+		matrix.identity();
+		matrix.translate(new Vector3f(position.getX(), position.getY(), position.getZ()));
+		matrix.rotateX((float) Math.toRadians(rotation.getX()));
+		matrix.rotateY((float) Math.toRadians(rotation.getY()));
+		matrix.rotateZ((float) Math.toRadians(rotation.getZ()));
+		matrix.scale(renderable.getScale());
 		return matrix;
 	}
 

@@ -1,6 +1,6 @@
 package dev.devious.engine;
 
-import dev.devious.engine.graphics.WindowManager;
+import dev.devious.engine.rendering.WindowManager;
 import dev.devious.engine.input.Mouse;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.glfw.GLFWErrorCallback;

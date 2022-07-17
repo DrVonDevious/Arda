@@ -1,6 +1,6 @@
 package dev.devious.engine.input;
 
-import dev.devious.engine.graphics.WindowManager;
+import dev.devious.engine.rendering.WindowManager;
 import org.joml.Vector2d;
 import org.joml.Vector2f;
 import org.lwjgl.glfw.GLFW;

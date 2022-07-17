@@ -1,7 +1,7 @@
-package dev.devious.engine.graphics.shader;
+package dev.devious.engine.rendering.shader;
 
-import dev.devious.engine.graphics.WindowManager;
-import dev.devious.engine.graphics.camera.Camera;
+import dev.devious.engine.rendering.WindowManager;
+import dev.devious.engine.rendering.camera.Camera;
 import dev.devious.engine.lighting.Light;
 import dev.devious.engine.utils.Transformation;
 import org.joml.Matrix4f;

@@ -1,4 +1,4 @@
-package dev.devious.engine.graphics.shader;
+package dev.devious.engine.rendering.shader;
 
 import org.lwjgl.opengl.GL20;
 

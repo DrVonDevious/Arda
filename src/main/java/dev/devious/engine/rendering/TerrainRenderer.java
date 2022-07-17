@@ -1,8 +1,8 @@
-package dev.devious.engine.graphics;
+package dev.devious.engine.rendering;
 
 import dev.devious.engine.entity.Model;
 import dev.devious.engine.entity.terrain.Terrain;
-import dev.devious.engine.graphics.shader.UniformManager;
+import dev.devious.engine.rendering.shader.UniformManager;
 import dev.devious.engine.utils.Transformation;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
@@ -11,7 +11,6 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import java.util.List;
-import java.util.Map;
 
 public class TerrainRenderer {
 	UniformManager uniformManager;
@@ -20,14 +19,11 @@ public class TerrainRenderer {
 		this.uniformManager = uniformManager;
 	}
 
-	public void renderTerrains(Map<Model, List<Terrain>> terrains) {
-		for (Model model : terrains.keySet()) {
-			prepareModel(model);
-			List<Terrain> batch = terrains.get(model);
-			for (Terrain terrain : batch) {
-				prepareInstance(terrain);
-				GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-			}
+	public void renderTerrains(List<Terrain> terrains) {
+		for (Terrain terrain : terrains) {
+			prepareModel(terrain.getModel());
+			prepareInstance(terrain);
+			GL11.glDrawElements(GL11.GL_TRIANGLES, terrain.getModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
 			unbindModel();
 		}
 	}

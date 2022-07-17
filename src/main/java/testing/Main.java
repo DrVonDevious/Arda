@@ -1,14 +1,14 @@
 package testing;
 
 import dev.devious.engine.EngineManager;
-import dev.devious.engine.graphics.WindowManager;
-import dev.devious.engine.graphics.WindowSettings;
-import dev.devious.engine.graphics.camera.Camera;
-import dev.devious.engine.graphics.camera.CameraSettings;
+import dev.devious.engine.rendering.WindowManager;
+import dev.devious.engine.rendering.WindowSettings;
+import dev.devious.engine.rendering.camera.Camera;
+import dev.devious.engine.rendering.camera.CameraSettings;
 
 public class Main {
 	public static void main(String[] args) {
-		Camera camera = new Camera(new CameraSettings(70, 0.01f, 1000f, 0.1f));
+		Camera camera = new Camera(new CameraSettings(70, 0.01f, 1000f, 1.4f));
 		WindowManager window = new WindowManager(
 			new WindowSettings(1080, 720, "Arda", true, false),
 				camera

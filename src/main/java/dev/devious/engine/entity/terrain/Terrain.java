@@ -1,9 +1,8 @@
 package dev.devious.engine.entity.terrain;
 
 import dev.devious.engine.ObjectLoader;
-import dev.devious.engine.entity.Entity;
 import dev.devious.engine.entity.Model;
-import dev.devious.engine.graphics.Texture;
+import dev.devious.engine.rendering.Texture;
 
 import java.util.ArrayList;
 import java.util.List;

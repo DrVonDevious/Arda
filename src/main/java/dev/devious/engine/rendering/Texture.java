@@ -1,4 +1,4 @@
-package dev.devious.engine.graphics;
+package dev.devious.engine.rendering;
 
 public class Texture {
 	public final int id;

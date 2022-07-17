@@ -4,59 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8b66b27-94cd-41d9-9f39-ac23b4ad3b35" name="Changes" comment="add shader and rendering system">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/05efc8b1657769a27696d478ded1e95f38737233" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/d/1de7865232e3372145af16951397040be39ee04c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/3/23d2f87a74922eb41aeb015e2874ac6ccb365774" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/1/41d1e667be325d52f9838abf17378912c7fa4deb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/6/56c77845e6e8e8671d911d7767d2371a17f0b153" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/b/6bb798b1da4c9028658f7aea26135961b060957f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/5/a5cc2925ca8258af241be7e5b0381edf30266302" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/0/c0d146b8bd32a2dedbf167fad35ed554ab1eb431" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/1/c1ee2a203a48c2d9902666f66681d1e7f179bd0b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/0/f07866736216be0ee2aba49e392191aeae700a35" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/terrain/Terrain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/EntityRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/RenderManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/TerrainRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/Texture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/WindowManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/WindowSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/camera/Camera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/camera/CameraSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/shader/ShaderManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/shader/UniformManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/input/Mouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/lighting/Light.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Transformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/testing/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/testing/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/models/bunny.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/shaders/fragmentTerrainShader.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/shaders/vertexTerrainShader.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="a8b66b27-94cd-41d9-9f39-ac23b4ad3b35" name="Changes" comment="add terrain and tree entity rendering systems">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/System.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/World.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Renderable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Rotation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Velocity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/systems/Physics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/scenes/Scene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/scenes/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/EngineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/EngineManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ILogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ILogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ObjectLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ObjectLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/RenderManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ShaderManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/WindowManager.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/test/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/test/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shaders/shader.frag" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/shaders/shader.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/terrain/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/terrain/Terrain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/EntityRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/EntityRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/RenderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/RenderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/TerrainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/TerrainRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/WindowManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/WindowManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/WindowSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/WindowSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/camera/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/camera/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/camera/CameraSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/camera/CameraSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/shader/ShaderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/shader/ShaderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/graphics/shader/UniformManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/shader/UniformManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/input/Mouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/input/Mouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Transformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Transformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testing/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testing/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/testing/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testing/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +89,7 @@
       <recent name="C:\Users\willi\IdeaProjects\Arda" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.devious.engine.ecs.components" />
       <recent name="dev.devious.engine.graphics" />
       <recent name="dev.devious.engine.rendering" />
     </key>
@@ -179,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657344673421</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add terrain and tree entity rendering systems">
+      <created>1657943622555</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657943622555</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,7 +183,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="add class for creating and managing the game window" />
     <MESSAGE value="add shader and rendering system" />
-    <option name="LAST_COMMIT_MESSAGE" value="add shader and rendering system" />
+    <MESSAGE value="add terrain and tree entity rendering systems" />
+    <option name="LAST_COMMIT_MESSAGE" value="add terrain and tree entity rendering systems" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Arda$testing_Main.ic" NAME="testing.Main Coverage Results" MODIFIED="1657823850709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

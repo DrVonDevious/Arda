@@ -1,11 +1,11 @@
-package dev.devious.engine.graphics;
+package dev.devious.engine.rendering;
 
 import dev.devious.engine.entity.Entity;
 import dev.devious.engine.entity.Model;
 import dev.devious.engine.entity.terrain.Terrain;
-import dev.devious.engine.graphics.camera.Camera;
-import dev.devious.engine.graphics.shader.ShaderManager;
-import dev.devious.engine.graphics.shader.UniformManager;
+import dev.devious.engine.rendering.camera.Camera;
+import dev.devious.engine.rendering.shader.ShaderManager;
+import dev.devious.engine.rendering.shader.UniformManager;
 import dev.devious.engine.lighting.Light;
 import dev.devious.engine.utils.Utils;
 import org.lwjgl.opengl.GL11;
@@ -59,26 +59,18 @@ public class RenderManager {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 	}
 
-	public void render(
-		Map<Model, List<Entity>> entities,
-		Map<Model, List<Terrain>> terrains,
-		Camera camera,
-		Light light
-	) {
+	public void render(List<dev.devious.engine.ecs.Entity> entities, List<Terrain> terrains, Camera camera, List<Light> lights) {
 		clear();
 
 		entityShader.bind();
-		uniformManager.setAllUniforms(camera, light);
+		uniformManager.setAllUniforms(camera, lights.get(0));
 		entityRenderer.renderEntities(entities);
 		entityShader.unbind();
 
 		terrainShader.bind();
-		uniformManagerTerrain.setAllUniforms(camera, light);
+		uniformManagerTerrain.setAllUniforms(camera, lights.get(0));
 		terrainRenderer.renderTerrains(terrains);
 		terrainShader.unbind();
-
-		entities.clear();
-		terrains.clear();
 	}
 
 	public void clear() {

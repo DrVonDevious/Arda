@@ -1,9 +1,11 @@
-package dev.devious.engine.graphics;
+package dev.devious.engine.rendering;
 
-import dev.devious.engine.entity.Entity;
+import dev.devious.engine.ecs.Entity;
+import dev.devious.engine.ecs.components.Renderable;
+import dev.devious.engine.ecs.components.Rotation;
 import dev.devious.engine.entity.Model;
-import dev.devious.engine.graphics.camera.Camera;
-import dev.devious.engine.graphics.shader.UniformManager;
+import dev.devious.engine.rendering.camera.Camera;
+import dev.devious.engine.rendering.shader.UniformManager;
 import dev.devious.engine.utils.Transformation;
 import org.joml.Vector3f;
 import org.lwjgl.opengl.GL11;
@@ -12,7 +14,6 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 import java.util.List;
-import java.util.Map;
 
 public class EntityRenderer {
 	UniformManager uniformManager;
@@ -23,22 +24,24 @@ public class EntityRenderer {
 		this.camera = camera;
 	}
 
-	public void renderEntities(Map<Model, List<Entity>> entities) {
-		for (Model model : entities.keySet()) {
-			prepareModel(model);
-			List<Entity> batch = entities.get(model);
-			for (Entity entity : batch) {
+	public void renderEntities(List<dev.devious.engine.ecs.Entity> entities) {
+		for (Entity entity : entities) {
+			if (entity.hasComponent(Renderable.class)) {
+				Renderable renderable = (Renderable) entity.getComponent(Renderable.class);
+				Model model = renderable.getModel();
+				prepareModel(model);
 				prepareInstance(entity);
 				rotateBillboard(camera, entity);
 				GL11.glDrawElements(GL11.GL_TRIANGLES, model.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
+				unbindModel();
 			}
-			unbindModel();
 		}
 	}
 
 	private void rotateBillboard(Camera camera, Entity entity) {
 		Vector3f cameraRotation = camera.getRotation();
-		entity.setRotation(new Vector3f(entity.getRotation().x, entity.getRotation().y, cameraRotation.y));
+		Rotation rotation = (Rotation) entity.getComponent(Rotation.class);
+		rotation.setXYZ(new Vector3f(rotation.getX(), rotation.getY(), cameraRotation.y));
 	}
 
 	private void prepareModel(Model model) {
@@ -56,10 +59,11 @@ public class EntityRenderer {
 	}
 
 	private void prepareInstance(Entity entity) {
-		uniformManager.setUniform("transformationMatrix", Transformation.createTransformationMatrix(entity));
-		uniformManager.setUniform("shineDamper", entity.getModel().getTexture().getShineDamper());
-		uniformManager.setUniform("specularity", entity.getModel().getTexture().getSpecularity());
-		uniformManager.setUniform("useFakeLighting", entity.getModel().getTexture().isHasFakeLighting());
+		Renderable renderable = (Renderable) entity.getComponent(Renderable.class);
+		uniformManager.setUniform("transformationMatrix", Transformation.createTransformationMatrixECS(entity));
+		uniformManager.setUniform("shineDamper", renderable.getModel().getTexture().getShineDamper());
+		uniformManager.setUniform("specularity", renderable.getModel().getTexture().getSpecularity());
+		uniformManager.setUniform("useFakeLighting", renderable.getModel().getTexture().isHasFakeLighting());
 		uniformManager.setUniform("skyColor", new Vector3f(0.4f, 0.8f, 1));
 	}
 

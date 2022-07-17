@@ -1,4 +1,4 @@
-package dev.devious.engine.graphics.camera;
+package dev.devious.engine.rendering.camera;
 
 public class CameraSettings {
 

@@ -1,7 +1,7 @@
-package dev.devious.engine.graphics;
+package dev.devious.engine.rendering;
 
-import dev.devious.engine.graphics.camera.Camera;
-import dev.devious.engine.graphics.camera.CameraSettings;
+import dev.devious.engine.rendering.camera.Camera;
+import dev.devious.engine.rendering.camera.CameraSettings;
 import dev.devious.engine.utils.Color;
 import org.joml.Matrix4f;
 import org.lwjgl.glfw.GLFW;

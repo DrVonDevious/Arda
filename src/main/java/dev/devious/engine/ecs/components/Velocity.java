@@ -7,13 +7,11 @@ public class Velocity extends Component {
 	private float x;
 	private float y;
 	private float z;
-	private Vector3f xyz;
 
-	public Velocity(float x, float y, float z, Vector3f xyz) {
+	public Velocity(float x, float y, float z) {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		this.xyz = xyz;
 	}
 
 	public float getX() {
@@ -40,11 +38,33 @@ public class Velocity extends Component {
 		this.z = z;
 	}
 
-	public Vector3f getXyz() {
-		return xyz;
+	public Vector3f getXYZ() {
+		return new Vector3f(getX(), getY(), getZ());
 	}
 
-	public void setXyz(Vector3f xyz) {
-		this.xyz = xyz;
+	public void setXYZ(Vector3f xyz) {
+		this.x = xyz.x;
+		this.y = xyz.y;
+		this.z = xyz.z;
+	}
+
+	public void reduceVelocity() {
+		if (x > 0) {
+			x -= 1;
+		} else if (x < 0) {
+			x += 1;
+		}
+
+		if (y > 0) {
+			y -= 1;
+		} else if (y < 0) {
+			y += 1;
+		}
+
+		if (z > 0) {
+			z -= 1;
+		} else if (z < 0) {
+			z += 1;
+		}
 	}
 }

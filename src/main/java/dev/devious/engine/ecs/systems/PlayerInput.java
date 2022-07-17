@@ -4,6 +4,8 @@ import dev.devious.engine.ecs.Entity;
 import dev.devious.engine.ecs.System;
 import dev.devious.engine.ecs.World;
 import dev.devious.engine.ecs.components.PlayerController;
+import dev.devious.engine.ecs.components.Position;
+import dev.devious.engine.ecs.components.Rotation;
 import dev.devious.engine.ecs.components.Velocity;
 import dev.devious.engine.input.Keyboard;
 import dev.devious.engine.rendering.camera.Camera;
@@ -21,33 +23,43 @@ public class PlayerInput extends System {
 	public void process() {
 		List<Entity> entities = world.getEntities();
 		for (Entity entity : entities) {
-			if (entity.hasComponent(PlayerController.class)) {
+			if (
+				entity.hasComponent(PlayerController.class) &&
+				entity.hasComponent(Velocity.class) &&
+				entity.hasComponent(Position.class)
+			) {
 				PlayerController controller = (PlayerController) entity.getComponent(PlayerController.class);
+				Velocity velocity = (Velocity) entity.getComponent(Velocity.class);
+				Position position = (Position) entity.getComponent(Position.class);
+				Rotation rotation = (Rotation) entity.getComponent(Rotation.class);
 				Keyboard keyboard = controller.getKeyboard();
 				Camera camera = controller.getCamera();
 
+				camera.setPosition(new Vector3f(position.getX(), position.getY() + 2, position.getZ()));
+				rotation.setXYZ(new Vector3f(camera.getRotation().x, camera.getRotation().y, camera.getRotation().z));
+
 				if (keyboard.isKeyPressed("w")) {
-					camera.move(0, 0, -1);
+					velocity.setZ(-1);
 				}
 
 				if (keyboard.isKeyPressed("s")) {
-					camera.move(0, 0, 1);
+					velocity.setZ(1);
 				}
 
 				if (keyboard.isKeyPressed("a")) {
-					camera.move(-1, 0, 0);
+					velocity.setX(-1);
 				}
 
 				if (keyboard.isKeyPressed("d")) {
-					camera.move(1, 0, 0);
+					velocity.setX(1);
 				}
 
 				if (keyboard.isKeyPressed("q")) {
-					camera.move(0, -1, 0);
+					velocity.setY(-1);
 				}
 
 				if (keyboard.isKeyPressed("e")) {
-					camera.move(0, 1, 0);
+					velocity.setY(1);
 				}
 			}
 		}

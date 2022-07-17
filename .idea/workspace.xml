@@ -4,26 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8b66b27-94cd-41d9-9f39-ac23b4ad3b35" name="Changes" comment="convert engine rendering systems to new ECS architecture">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/PlayerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/systems/PlayerInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/input/Keyboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+    <list default="true" id="a8b66b27-94cd-41d9-9f39-ac23b4ad3b35" name="Changes" comment="clean up keyboard input and add PlayerController component">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/EngineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/EngineManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ILogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ILogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ObjectLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ObjectLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Renderable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Renderable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/entity/terrain/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/Terrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/EntityRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/EntityRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/RenderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/RenderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/TerrainRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/TerrainRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/scenes/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/scenes/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Transformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/utils/Transformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Velocity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/components/Velocity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/systems/Physics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/systems/Physics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/systems/PlayerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/ecs/systems/PlayerInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/camera/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/devious/engine/rendering/camera/Camera.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/testing/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testing/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testing/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/testing/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658028163178</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="clean up keyboard input and add PlayerController component">
+      <created>1658031725030</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1658031725030</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -181,7 +175,8 @@
     <MESSAGE value="add shader and rendering system" />
     <MESSAGE value="add terrain and tree entity rendering systems" />
     <MESSAGE value="convert engine rendering systems to new ECS architecture" />
-    <option name="LAST_COMMIT_MESSAGE" value="convert engine rendering systems to new ECS architecture" />
+    <MESSAGE value="clean up keyboard input and add PlayerController component" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean up keyboard input and add PlayerController component" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Arda$testing_Main.ic" NAME="testing.Main Coverage Results" MODIFIED="1657823850709" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

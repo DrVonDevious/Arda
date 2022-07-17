@@ -49,8 +49,16 @@ public class Camera {
 		return position;
 	}
 
+	public void setPosition(Vector3f position) {
+		this.position = position;
+	}
+
 	public Vector3f getRotation() {
 		return rotation;
+	}
+
+	public void setRotation(Vector3f rotation) {
+		this.rotation = rotation;
 	}
 
 	public CameraSettings getSettings() {

@@ -4,10 +4,7 @@ import dev.devious.engine.ILogic;
 import dev.devious.engine.ObjectLoader;
 import dev.devious.engine.ecs.Entity;
 import dev.devious.engine.ecs.World;
-import dev.devious.engine.ecs.components.PlayerController;
-import dev.devious.engine.ecs.components.Position;
-import dev.devious.engine.ecs.components.Renderable;
-import dev.devious.engine.ecs.components.Rotation;
+import dev.devious.engine.ecs.components.*;
 import dev.devious.engine.ecs.systems.Physics;
 import dev.devious.engine.ecs.systems.PlayerInput;
 import dev.devious.engine.input.Keyboard;
@@ -61,6 +58,9 @@ public class Game implements ILogic {
 
 		Entity player = world.createEntity();
 		player.addComponent(new PlayerController(keyboard, camera));
+		player.addComponent(new Position(0, 0, 0));
+		player.addComponent(new Velocity(0, 0, 0));
+		player.addComponent(new Rotation(0, 0, 0));
 
 		Model model = objectLoader.loadOBJModel("/models/billboard.obj");
 		model.setTexture(new Texture(objectLoader.loadTexture("src/main/resources/textures/pine_tree.png")));

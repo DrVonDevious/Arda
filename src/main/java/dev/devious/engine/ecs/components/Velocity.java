@@ -50,21 +50,15 @@ public class Velocity extends Component {
 
 	public void reduceVelocity() {
 		if (x > 0) {
-			x -= 1;
+			x -= 0.1f;
 		} else if (x < 0) {
-			x += 1;
-		}
-
-		if (y > 0) {
-			y -= 1;
-		} else if (y < 0) {
-			y += 1;
+			x += 0.1f;
 		}
 
 		if (z > 0) {
-			z -= 1;
+			z -= 0.1f;
 		} else if (z < 0) {
-			z += 1;
+			z += 0.1f;
 		}
 	}
 }

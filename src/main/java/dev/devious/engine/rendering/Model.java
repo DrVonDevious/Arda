@@ -1,13 +1,17 @@
 package dev.devious.engine.rendering;
 
+import org.joml.Vector3i;
+
 public class Model {
 	private int id;
 	private int vertexCount;
+	private Vector3i size;
 	private Texture texture;
 
-	public Model(int id, int vertexCount) {
+	public Model(int id, int vertexCount, Vector3i size) {
 		this.id = id;
 		this.vertexCount = vertexCount;
+		this.size = size;
 	}
 
 	public Model(int id, int vertexCount, Texture texture) {
@@ -36,5 +40,9 @@ public class Model {
 
 	public void setTexture(Texture texture) {
 		this.texture = texture;
+	}
+
+	public Vector3i getSize() {
+		return size;
 	}
 }

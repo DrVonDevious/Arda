@@ -5,10 +5,7 @@ import dev.devious.engine.utils.Utils;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL15;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
+import org.lwjgl.opengl.*;
 import org.lwjgl.stb.STBImage;
 import org.lwjgl.system.MemoryStack;
 
@@ -145,7 +142,7 @@ public class ObjectLoader {
 		storeDataInAttributeList(2, 3, normals);
 		storeDataInAttributeList(3, 2, lightData);
 		unbind();
-		return new Model(id, indices.length);
+		return new Model(id, indices.length, new Vector3i());
 	}
 
 	public int loadTexture(String filename) throws Exception {
@@ -163,6 +160,10 @@ public class ObjectLoader {
 			if (buffer == null) {
 				throw new Exception("Texture image " + filename + " was not loaded. Error: " + STBImage.stbi_failure_reason());
 			}
+
+			GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+			GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL14.GL_TEXTURE_LOD_BIAS, -1.4f);
 
 			width = w.get();
 			height = h.get();
@@ -182,7 +183,7 @@ public class ObjectLoader {
 		return id;
 }
 
-public int createVAO() {
+	public int createVAO() {
 		int id = GL30.glGenVertexArrays();
 		vaos.add(id);
 		GL30.glBindVertexArray(id);

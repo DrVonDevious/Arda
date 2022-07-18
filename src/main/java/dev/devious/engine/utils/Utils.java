@@ -1,5 +1,7 @@
 package dev.devious.engine.utils;
 
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.lwjgl.system.MemoryUtil;
 
 import java.io.BufferedReader;
@@ -15,6 +17,13 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Utils {
+    public static float getBarrycentric(Vector3f point1, Vector3f point2, Vector3f point3, Vector2f position) {
+        float det = (point2.z - point3.z) * (point1.x - point3.x) + (point3.x - point2.x) * (point1.z - point3.z);
+        float l1 = ((point2.z - point3.z) * (position.x - point3.x) + (point3.x - point2.x) * (position.y - point3.z)) / det;
+        float l2 = ((point3.z - point1.z) * (position.x - point3.x) + (point1.x - point3.x) * (position.y - point3.z)) / det;
+        float l3 = 1.0f - l1 - l2;
+        return l1 * point1.y + l2 * point2.y + l3 * point3.y;
+    }
     public static FloatBuffer storeDataInFloatBuffer(float[] data) {
         FloatBuffer buffer = MemoryUtil.memAllocFloat(data.length);
         buffer.put(data).flip();

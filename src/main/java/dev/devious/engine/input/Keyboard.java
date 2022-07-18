@@ -20,6 +20,7 @@ public class Keyboard {
 			case ("d") -> GLFW.glfwGetKey(windowManager.getWindow(), GLFW.GLFW_KEY_D);
 			case ("q") -> GLFW.glfwGetKey(windowManager.getWindow(), GLFW.GLFW_KEY_Q);
 			case ("e") -> GLFW.glfwGetKey(windowManager.getWindow(), GLFW.GLFW_KEY_E);
+			case ("f") -> GLFW.glfwGetKey(windowManager.getWindow(), GLFW.GLFW_KEY_F);
 			default -> 0;
 		};
 	}

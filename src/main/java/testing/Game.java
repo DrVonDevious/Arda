@@ -42,7 +42,7 @@ public class Game implements ILogic {
 		this.window = window;
 		renderer = new RenderManager(window, camera);
 		sceneManager = new SceneManager();
-		light = new Light(new Vector3f(0, 20, -10), new Vector3f(1f, 1f, 1f));
+		light = new Light(new Vector3f(100, 100, 0), new Vector3f(1f, 1f, 1f));
 		world = new World(renderer, camera, light);
 	}
 
@@ -50,7 +50,6 @@ public class Game implements ILogic {
 	public void init() throws Exception {
 		renderer.init();
 
-		world.addSystem(new Physics(world));
 		world.addSystem(new PlayerInput(world));
 
 		Scene gameScene = new Scene(window, camera);
@@ -58,6 +57,8 @@ public class Game implements ILogic {
 
 		Entity player = world.createEntity();
 		player.addComponent(new PlayerController(keyboard, camera));
+		player.addComponent(new Rigidbody());
+		player.addComponent(new GodMode(false));
 		player.addComponent(new Position(0, 0, 0));
 		player.addComponent(new Velocity(0, 0, 0));
 		player.addComponent(new Rotation(0, 0, 0));
@@ -69,25 +70,30 @@ public class Game implements ILogic {
 		model.getTexture().setShineDamper(10);
 		model.getTexture().setSpecularity(0);
 
+		Terrain terrain = new Terrain(
+				-400,
+				-400,
+				objectLoader,
+				new Texture(objectLoader.loadTexture("src/main/resources/textures/grass.png")),
+				"heightmap"
+		);
+
 		Random rand = new Random();
 		for (int i = 0; i < 6000; i++) {
 			int randX = rand.nextInt(800) - 400;
 			int randZ = rand.nextInt(800) - 400;
 			int randScale = rand.nextInt(2) + 10;
 			dev.devious.engine.ecs.Entity entity = world.createEntity();
-			entity.addComponent(new Position(randX, 10, randZ));
+			entity.addComponent(new Position(randX, terrain.getVertexHeight(randX, randZ) + 9.5f, randZ));
 			entity.addComponent(new Rotation(90, 0, 140));
 			entity.addComponent(new Renderable(model, randScale));
 			gameScene.addEntity(entity);
 		}
 
 		gameScene.addLight(light);
-		gameScene.addTerrain(new Terrain(
-			-400,
-			-400,
-			objectLoader,
-			new Texture(objectLoader.loadTexture("src/main/resources/textures/grass.png"))
-		));
+		gameScene.addTerrain(terrain);
+
+		world.addSystem(new Physics(world, terrain));
 	}
 
 	@Override
